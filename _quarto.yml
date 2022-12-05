@@ -1,0 +1,10 @@
+project:
+  title: "shinytree-quickref"
+
+execute: 
+  eval: false
+  
+format:
+  html:
+    toc: true
+    toc_float: true

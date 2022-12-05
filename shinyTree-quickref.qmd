@@ -1,0 +1,76 @@
+
+## The basics
+
+There's not much to this:
+
+1. Put a placeholder in the UI with `shinyTree::shinyTree()`
+  * set `themeIcons = FALSE`
+2. Build a list inside of `shinyTree::renderTree()`
+
+Tada.
+
+Another option is to use `shinyTree::renderEmptyTree()` instead of `shinyTree::renderTree()`, then use `shinyTree::updateTree()` to update it (i.e. add or remove data).
+
+Only the names of the `list` are used, so assign them `""`
+
+list(
+  a = "",
+  b = "",
+)
+
+It's also better to use `structure()` as you can pass options, such as
+
+* `stselected`
+* `stdisabled`
+* `sticon`
+* `stopened`
+
+```{r}
+
+output$tree <- shiny::renderTree(
+  {
+    result <-
+      list(
+        root1 = 
+          structure(
+            "", 
+            stselected = TRUE, 
+            sticon = "signal"
+          ),
+        root2 = 
+          structure(
+            list(
+              SubListA = 
+                list(
+                  leaf1 = "", 
+                  leaf2 = "", 
+                  leaf3 = ""
+                ),
+              SubListB = 
+                structure(
+                  list(
+                    leafA = "", 
+                    leafB = ""
+                  ), 
+                  stdisabled = TRUE
+                )
+            ),
+            stopened=TRUE
+          )
+      )
+  }
+)
+
+```
+
+The main container is `structure(list())`
+
+inside of list,
+
+LHS is the text of the node
+
+RHS is 
+
+* `""` to designate as a terminal node (not recommended)
+* `structure(list(""))` to designate it as a terminal node, with the option to later nest items underneath (recommended)
+* to create a child node, simply populate the `list()` with similar LHS-RHS patterns
