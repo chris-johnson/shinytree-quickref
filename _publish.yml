@@ -1,0 +1,4 @@
+- source: shinyTree-quickref.qmd
+  quarto-pub:
+    - id: e9505d24-142a-4c85-95eb-52d958838053
+      url: 'https://quartopub.com/sites/chrisjohnson/shinytree-quickref'

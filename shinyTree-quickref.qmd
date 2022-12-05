@@ -4,7 +4,7 @@
 There's not much to this:
 
 1. Put a placeholder in the UI with `shinyTree::shinyTree()`
-  * set `themeIcons = FALSE`
+    * set `themeIcons = FALSE`
 2. Build a list inside of `shinyTree::renderTree()`
 
 Tada.
@@ -13,10 +13,12 @@ Another option is to use `shinyTree::renderEmptyTree()` instead of `shinyTree::r
 
 Only the names of the `list` are used, so assign them `""`
 
+```{r}
 list(
   a = "",
   b = "",
 )
+```
 
 It's also better to use `structure()` as you can pass options, such as
 
@@ -63,13 +65,7 @@ output$tree <- shiny::renderTree(
 
 ```
 
-The main container is `structure(list())`
-
-inside of list,
-
-LHS is the text of the node
-
-RHS is 
+The main container is `structure(list())`. Inside of `list()`, the LHS is the text of the node and the RHS is one of
 
 * `""` to designate as a terminal node (not recommended)
 * `structure(list(""))` to designate it as a terminal node, with the option to later nest items underneath (recommended)
